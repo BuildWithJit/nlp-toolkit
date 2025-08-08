@@ -62,6 +62,14 @@ class UniversalDocumentLoader:
         return docs
 
     def _ocr_image(self, path: Path) -> List[Document]:
-        img = Image.open(path)
-        text = pytesseract.image_to_string(img, lang=self.ocr_lang)
+        try:
+            from PIL import Image
+            import pytesseract
+        except ImportError as e:
+            raise RuntimeError(
+                "OCR dependencies missing. Install: pip install pillow pytesseract; "
+                "and ensure system package 'tesseract' is installed."
+            ) from e
+        with Image.open(path) as img:
+            text = pytesseract.image_to_string(img, lang=self.ocr_lang)
         return [Document(page_content=text, metadata={"source": str(path)})]
