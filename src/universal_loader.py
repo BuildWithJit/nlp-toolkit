@@ -5,7 +5,10 @@ from langchain_community.document_loaders import (
     TextLoader, CSVLoader, JSONLoader, UnstructuredExcelLoader,
     PyPDFLoader, UnstructuredFileLoader
 )
-from langchain.docstore.document import Document
+try:
+    from langchain_core.documents import Document
+except ImportError:  # langchain < 0.1.0
+    from langchain.docstore.document import Document
 
 import pytesseract
 from pdf2image import convert_from_path
