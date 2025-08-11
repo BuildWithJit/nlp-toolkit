@@ -17,7 +17,7 @@ class LoadReport(TypedDict):
 @dataclass
 class LoaderConfig:
     prefer:str = 'auto' # 'auto'| 'ocr'| 'text'
-    min_text_ration: float = 0.5 # non-whitespace ratio to accept native text
+    min_text_ratio: float = 0.5 # non-whitespace ratio to accept native text
     dpi: int = 300 # dpi to use for OCR
     ocr_lang:str = 'eng' # language for OCR
     deskew:bool = False
