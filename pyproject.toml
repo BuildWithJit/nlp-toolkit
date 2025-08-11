@@ -1,15 +1,30 @@
+[build-system]
+requires = ["hatchling>=1.22"]
+build-backend = "hatchling.build"
+
 [project]
 name = "nlp-toolkit"
 version = "0.1.0"
-description = "Add your description here"
+description = "Documents → YAML → API toolkit"
 readme = "README.md"
 requires-python = ">=3.10"
+# Keep base light: only things every user needs.
 dependencies = [
-    "langchain>=0.3.27",
-    "langchain-community>=0.3.27",
-    "pandas>=2.3.1",
-    "pdf2image>=1.17.0",
-    "pillow>=11.3.0",
-    "pypdf>=5.9.0",
-    "pytesseract>=0.3.13",
+  "pydantic>=2",
+  "fastapi>=0.115",
+  "uvicorn>=0.30",
+  "reportlab>=4.4.3",
 ]
+
+[project.optional-dependencies]
+pdf = ["pymupdf>=1.24.4", "pdf2image>=1.17.0" , "pdfplumber>=0.11.7"]
+ocr = ["pytesseract>=0.3.13", "opencv-python>=4.9", "pillow>=10"]
+excel = ["openpyxl>=3.1"]
+dev = ["pytest>=8.2", "pytest-cov>=5.0", "ruff>=0.12.8", "mypy>=1.10"]
+all = ["nlp-toolkit[pdf,ocr,excel,dev]"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["nlp_toolkit"]
+
+[tool.ruff]
+line-length = 100
