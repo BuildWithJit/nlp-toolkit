@@ -36,4 +36,4 @@ jobs:
               run: ruff check .
 
             - name: Run tests
-              run: uv runpytest -q --cov=nlp_toolkit
+              run: uv run pytest -q --cov=nlp_toolkit
