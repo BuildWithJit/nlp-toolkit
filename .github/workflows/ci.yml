@@ -25,11 +25,6 @@ jobs:
             - name: Install dependencies
               run: uv pip install -e ".[all]"
 
-            - name: Install tools
-              run: |
-                  uv tool install ruff
-                  uv tool install pytest
-
             - name: Install coverage in project
               run: uv pip install pytest-cov
 
