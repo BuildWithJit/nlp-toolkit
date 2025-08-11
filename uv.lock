@@ -343,19 +343,22 @@ version = "0.1.0"
 source = { editable = "." }
 dependencies = [
     { name = "fastapi" },
-    { name = "pdfplumber" },
     { name = "pydantic" },
     { name = "uvicorn" },
 ]
 
 [package.optional-dependencies]
 all = [
+    { name = "mypy" },
     { name = "opencv-python" },
     { name = "openpyxl" },
     { name = "pdf2image" },
+    { name = "pdfplumber" },
     { name = "pillow" },
     { name = "pymupdf" },
     { name = "pytesseract" },
+    { name = "pytest" },
+    { name = "ruff" },
 ]
 dev = [
     { name = "mypy" },
@@ -372,6 +375,7 @@ ocr = [
 ]
 pdf = [
     { name = "pdf2image" },
+    { name = "pdfplumber" },
     { name = "pymupdf" },
 ]
 
@@ -379,11 +383,11 @@ pdf = [
 requires-dist = [
     { name = "fastapi", specifier = ">=0.115" },
     { name = "mypy", marker = "extra == 'dev'", specifier = ">=1.10" },
-    { name = "nlp-toolkit", extras = ["pdf", "ocr", "excel"], marker = "extra == 'all'" },
+    { name = "nlp-toolkit", extras = ["pdf", "ocr", "excel", "dev"], marker = "extra == 'all'" },
     { name = "opencv-python", marker = "extra == 'ocr'", specifier = ">=4.9" },
     { name = "openpyxl", marker = "extra == 'excel'", specifier = ">=3.1" },
     { name = "pdf2image", marker = "extra == 'pdf'", specifier = ">=1.17.0" },
-    { name = "pdfplumber", specifier = ">=0.11.7" },
+    { name = "pdfplumber", marker = "extra == 'pdf'", specifier = ">=0.11.7" },
     { name = "pillow", marker = "extra == 'ocr'", specifier = ">=10" },
     { name = "pydantic", specifier = ">=2" },
     { name = "pymupdf", marker = "extra == 'pdf'", specifier = ">=1.24.4" },
