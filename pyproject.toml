@@ -20,7 +20,7 @@ pdf = ["pymupdf>=1.24.4", "pdf2image>=1.17.0" , "pdfplumber>=0.11.7"]
 ocr = ["pytesseract>=0.3.13", "opencv-python>=4.9", "pillow>=10"]
 excel = ["openpyxl>=3.1"]
 dev = ["pytest>=8.2", "ruff>=0.4", "mypy>=1.10"]
-all = ["nlp-toolkit[pdf,ocr,excel]"]
+all = ["nlp-toolkit[pdf,ocr,excel, dev]"]
 
 [tool.hatch.build.targets.wheel]
 packages = ["nlp_toolkit"]
