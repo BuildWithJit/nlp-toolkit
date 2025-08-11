@@ -25,14 +25,16 @@ jobs:
             - name: Install dependencies
               run: uv pip install -e ".[all]"
 
-            - name: Install ruff as tool
-              run: uv tool install ruff
+            - name: Install tools
+              run: |
+                  uv tool install ruff
+                  uv tool install pytest
 
-            - name: Install test tools
-              run: uv pip install pytest pytest-cov
+            - name: Install coverage in project
+              run: uv pip install pytest-cov
 
             - name: Run linting
               run: ruff check .
 
             - name: Run tests
-              run: uv run pytest -q --cov=nlp_toolkit
+              run: pytest -q --cov=nlp_toolkit
