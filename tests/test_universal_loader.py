@@ -25,4 +25,4 @@ def test_pdf_selective_ocr(tmp_path):
     c.showPage()
     c.save()
     docs, rep = load(pdf, LoaderConfig(prefer="auto"))
-    assert rep["pages_total"] == 1 and rep["pages_ocr"] == 1 and docs[0]["metadata"]["method"] == "ocr"
+    assert rep["pages_total"] == 1 and rep["pages_ocr"] == 1 and docs[0]["meta"]["method"] == "ocr"

@@ -59,7 +59,7 @@ def _ocr_pdf_page(page, i:int, pdf_bytes:bytes, config:LoaderConfig) -> str:
     text = _ocr_pil(imgs[0], config)
     return {
         'text': text,
-        "metadata": {
+        "meta": {
             "page":i,
             "dpi": config.dpi,
             "method": "ocr",
@@ -86,7 +86,7 @@ def load(src:str|Path|bytes|IOBase, config:LoaderConfig|None=None) -> Docs:
                 if config.prefer == "text" or (config.prefer == "auto" and _ratio(text) >= config.min_text_ratio):
                     docs.append({
                         "text": text,
-                        "metadata": {
+                        "meta": {
                             "page": i,
                             "method": "text",
                             "dpi": config.dpi,
@@ -112,13 +112,13 @@ def load(src:str|Path|bytes|IOBase, config:LoaderConfig|None=None) -> Docs:
             text = _ocr_pil(Image.open(BytesIO(data)), config)
             docs.append({
                 "text": text,
-                "metadata": {"method": "ocr"}
+                "meta": {"method": "ocr"}
             })
             pages_total = pages_ocr = 1
             engines.append("ocr")
         else:
             txt = data.decode('utf-8', errors='ignore')
-            docs.append({"text": txt, "metadata": {"method": "text"}})
+            docs.append({"text": txt, "meta": {"method": "text"}})
             pages_total = 1
     
     rep: LoadReport = {
