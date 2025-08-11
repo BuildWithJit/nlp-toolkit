@@ -1,15 +1,30 @@
+[build-system]
+requires = ["hatchling>=1.22"]
+build-backend = "hatchling.build"
+
 [project]
 name = "nlp-toolkit"
 version = "0.1.0"
-description = "Add your description here"
+description = "Documents → YAML → API toolkit"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
-    "langchain>=0.3.27",
-    "langchain-community>=0.3.27",
-    "pandas>=2.3.1",
-    "pdf2image>=1.17.0",
-    "pillow>=11.3.0",
-    "pypdf>=5.9.0",
-    "pytesseract>=0.3.13",
+  "pydantic>=2",
+  "fastapi>=0.115",
+  "uvicorn>=0.30",
+  # keep these only if you truly need them at runtime:
+  "pandas>=2.3.1",
+  "pdf2image>=1.17.0",
+  "pillow>=10",          # keep version sane; 11.3 may not exist everywhere
+  "pypdf>=5.9.0",
+  "pytesseract>=0.3.13",
 ]
+# dev tools should NOT be runtime deps; install them separately or add a dev extra
+[project.optional-dependencies]
+dev = ["pytest>=8.4", "ruff>=0.4"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["nlp_toolkit"]
+
+[tool.ruff]
+line-length = 120
